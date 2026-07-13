@@ -1,23 +1,25 @@
 <!doctype html>
-<html lang="da">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cæcilie Balling</title>
-    <meta name="description" content="Cæcilie Balling — violinist og kunstner." />
-    <meta name="theme-color" content="#f4f1ea" />
+    <meta name="description" content="Cæcilie Balling — violinist and artist. New website coming soon." />
+    <meta name="theme-color" content="#ee241f" />
 
     <meta property="og:title" content="Cæcilie Balling" />
-    <meta property="og:description" content="Cæcilie Balling — violinist og kunstner." />
+    <meta property="og:description" content="Violinist and artist. New website coming soon." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.caecilieballing.com/" />
+    <meta property="og:image" content="https://www.caecilieballing.com/caecilie-balling.webp" />
     <link rel="canonical" href="https://www.caecilieballing.com/" />
+    <link rel="preload" href="caecilie-balling.webp" as="image" type="image/webp" />
 
     <style>
       :root {
-        color-scheme: light;
-        --paper: #f4f1ea;
-        --ink: #171717;
+        color-scheme: dark;
+        --white: #fffaf4;
+        --shadow: rgba(20, 0, 0, 0.22);
       }
 
       * {
@@ -31,31 +33,135 @@
 
       body {
         margin: 0;
-        background: var(--paper);
-        color: var(--ink);
+        overflow: hidden;
+        background: #d91f1b;
+        color: var(--white);
         font-family: Arial, Helvetica, sans-serif;
       }
 
       main {
+        position: relative;
         min-height: 100svh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
+        isolation: isolate;
+      }
+
+      .portrait {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 43%;
+      }
+
+      main::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, transparent 28%),
+          linear-gradient(0deg, rgba(0, 0, 0, 0.26) 0%, transparent 30%);
+      }
+
+      h1,
+      p {
+        position: absolute;
+        margin: 0;
+        text-transform: uppercase;
+        text-shadow: 0 1px 12px var(--shadow);
       }
 
       h1 {
-        margin: 0;
-        font-size: clamp(2.5rem, 9vw, 8rem);
-        font-weight: 400;
-        line-height: 0.9;
-        letter-spacing: -0.055em;
-        text-align: center;
+        top: clamp(18px, 3vw, 44px);
+        left: clamp(18px, 3vw, 44px);
+        font-size: clamp(2.15rem, 7.4vw, 8.75rem);
+        font-weight: 500;
+        line-height: 0.82;
+        letter-spacing: -0.065em;
+      }
+
+      h1 span {
+        display: block;
+      }
+
+      p {
+        right: clamp(18px, 3vw, 44px);
+        bottom: clamp(18px, 3vw, 38px);
+        max-width: 13em;
+        font-size: clamp(0.78rem, 1.3vw, 1.15rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: 0.12em;
+        text-align: right;
+      }
+
+      @media (max-width: 640px) {
+        .portrait {
+          object-position: 52% 50%;
+        }
+
+        h1 {
+          font-size: clamp(2.5rem, 15vw, 5.4rem);
+        }
+
+        p {
+          max-width: 10em;
+          line-height: 1.1;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .portrait {
+          animation: arrive 1.2s ease-out both;
+        }
+
+        h1,
+        p {
+          animation: reveal 0.8s 0.25s ease-out both;
+        }
+
+        p {
+          animation-delay: 0.4s;
+        }
+
+        @keyframes arrive {
+          from {
+            opacity: 0;
+            transform: scale(1.025);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes reveal {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>Cæcilie Balling</h1>
+      <img
+        class="portrait"
+        src="caecilie-balling.webp"
+        alt="Portrait of Cæcilie Balling"
+        width="2400"
+        height="2331"
+      />
+      <h1><span>Cæcilie</span><span>Balling</span></h1>
+      <p>New website<br />coming soon</p>
     </main>
   </body>
 </html>
